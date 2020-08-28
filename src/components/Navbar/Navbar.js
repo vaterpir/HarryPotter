@@ -26,32 +26,6 @@ export const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <div className="navbarDetail">
-        <div className="navLogoBlock">
-          <div className="navIcon">{svgLogo}</div>
-          <div className="navDescription">To-Do List</div>
-        </div>
-        <div className="navElement">
-          <div className="navIcon">{svgHome}</div>
-          <div className="navDescription">Home</div>
-        </div>
-        <div className="navElement">
-          <div className="navIcon">{svgHome}</div>
-          <div className="navDescription">Projects</div>
-        </div>
-        <div className="navElement">
-          <div className="navIcon">{svgHome}</div>
-          <div className="navDescription">Team</div>
-        </div>
-        <div className="navElement">
-          <div className="navIcon">{svgHome}</div>
-          <div className="navDescription">Contacts</div>
-        </div>
-        <div className="navElement">
-          <div className="navIcon">{svgHome}</div>
-          <div className="navDescription">Settings</div>
-        </div>
-      </div>
     </div>
   );
 };

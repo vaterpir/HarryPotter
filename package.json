@@ -1,5 +1,5 @@
 {
-  "homepage": "https://vaterpir.github.io/react-boilerplate",
+  "homepage": "https://vaterpir.github.io/harrypotter",
   "name": "react-boilerplate",
   "version": "1.0.0",
   "description": "",
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vaterpir/react-boilerplate.git"
+    "url": "git+https://github.com:vaterpir/harrypotter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vaterpir/react-boilerplate/issues"
+    "url": "https://github.com/vaterpir/harrypotter/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
