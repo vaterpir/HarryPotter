@@ -1,0 +1,57 @@
+.Navbar {
+    background: #fff;
+    width: 70px;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.Navbar:hover {
+    overflow: visible;
+}
+
+.navbarDetail {
+    background-color: #fff;
+    width: 255px;
+    height: 100%;
+}
+
+.navLogoBlock {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navElement {
+    height: 56px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navIcon {
+    height: 100%;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navDescription {
+    width: 185px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    letter-spacing: 0.2px;
+    color: #797C92;
+}
