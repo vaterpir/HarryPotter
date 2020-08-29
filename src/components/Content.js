@@ -1,11 +1,5 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export const Content = () => {
-
-
-    return (
-        <div className="Content">
-            {/* <Projects /> */}
-        </div>
-    );
+  return <div className="Content">{/* <Projects /> */}</div>;
 };

@@ -1,6 +1,8 @@
 .Navbar {
     background: #fff;
     width: 70px;
+    min-width: 70px;
+    max-width: 70px;
     height: 100%;
     z-index: 2;
     overflow: hidden;
@@ -51,7 +53,6 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;
-    /* identical to box height */
     letter-spacing: 0.2px;
     color: #797C92;
 }
