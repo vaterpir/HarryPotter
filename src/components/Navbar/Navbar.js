@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../../styles/Navbar.css';
 
+const request = new XMLHttpRequest();
+
 const svgLogo = (
   <svg
     width="32"
@@ -45,6 +47,38 @@ const svgHome = (
   </svg>
 );
 
-export const Navbar = () => {
-  return <div className="Navbar">123213123123123123</div>;
+export const Navbar = ({ sort }) => {
+  const zapros = (prop) => {
+    request.open(
+      'GET',
+      `https://www.potterapi.com/v1/${prop}?key=$2a$10$dSooM7l5aj6uLNFOmwf/SObKzKhMgFSrbie2BUTrRmz5hw/jj6Wme`,
+      true,
+    );
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        sort(data, prop);
+      } else {
+        // error
+        console.log('error');
+      }
+    };
+    request.send();
+  };
+
+  return (
+    <div className="Navbar">
+      <div className="header">Sort Hogwards:</div>
+      <div className="sortElem">
+        <button onClick={() => zapros('characters')}>characters</button>
+      </div>
+      <div className="sortElem">
+        <button onClick={() => zapros('houses')}>houses</button>
+      </div>
+      <div className="sortElem">
+        <button onClick={() => zapros('spells')}>spells</button>
+      </div>
+    </div>
+  );
 };
