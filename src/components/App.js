@@ -5,35 +5,50 @@ import { Content } from './Content';
 
 import '../styles/App.css';
 
-export const App = () => {
-  const [dataSort, setDataSort] = useState('');
-  const [propSort, setPropSort] = useState('');
+const request = new XMLHttpRequest();
+const baseURL = 'https://www.potterapi.com/v1/';
+const keyURL = '$2a$10$dSooM7l5aj6uLNFOmwf/SObKzKhMgFSrbie2BUTrRmz5hw/jj6Wme';
 
-  const sortData = (data, prop) => {
-    console.log(data);
-    if (prop === 'characters') {
-      const newData = [...data]
+export const App = () => {
+  const [newData, setNewData] = useState('');
+
+  const sortNewData = (oldDate, option) => {
+    if (option === 'characters') {
+      const newData = [...oldDate]
         .map((character) => {
           return character.name;
         })
         .sort()
         .map((name) => {
-          return data.filter((char) => {
+          return oldDate.filter((char) => {
             return char.name === name;
           });
         })
         .map((newChar) => newChar[0]);
-      setDataSort(newData);
-      setPropSort(prop);
+      setNewData(newData);
     } else {
-      setDataSort(data);
-      setPropSort(prop);
+      setNewData(oldDate);
     }
+  };
+
+  const getData = (mainURL, option) => {
+    request.open('GET', `${baseURL}${mainURL}?key=${keyURL}`, true);
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        console.log(data);
+        setNewData(sortNewData(data, option));
+      } else {
+        console.log('error');
+      }
+    };
+    request.send();
   };
   return (
     <div className="App">
-      <Navbar sortData={sortData} />
-      <Content dataSort={dataSort} propSort={propSort} />
+      <Navbar getData={getData} />
+      <Content newData={newData} />
       <Specifications />
     </div>
   );
