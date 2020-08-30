@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const tableLis = (dataSort, propSort) => {
-  console.log(dataSort);
   return [...dataSort].map((character, index) => {
     return (
       <div className="table">
@@ -17,5 +16,7 @@ const tableLis = (dataSort, propSort) => {
 };
 
 export const Content = ({ newData }) => {
-  return <div className="Content">{newData ? tableLis(newData) : ''}</div>;
+  const [mainData, setMainData] = useState('');
+  tableLis(newData);
+  return <div className="Content">{newData ? mainData : ''}</div>;
 };
