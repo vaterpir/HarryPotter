@@ -42,11 +42,14 @@ const sortData = (newData, navOption, getName) => {
     return [...data].map((elem, index) => {
       return (
         <div className="table" key={index}>
-          <div className="row">
-            <div className="col">{elem.name}</div>
-            <div className="col">{elem.role || '---'}</div>
-            <div className="col">{elem.species || '---'}</div>
-          </div>
+          <button>
+            <div className="row">
+              <div className="col index">{index + 1}</div>
+              <div className="col">{elem.name}</div>
+              <div className="col">{elem.role || '---'}</div>
+              <div className="col">{elem.species || '---'}</div>
+            </div>
+          </button>
         </div>
       );
     });
@@ -57,10 +60,14 @@ const sortData = (newData, navOption, getName) => {
           {[...houses].map((house, index) => {
             return (
               <div className="col" key={index}>
-                <div>{house}</div>
-                {[...newData].map((charact, index) => {
+                <div className="colHead">{house}</div>
+                {[...newData].map((charact, ind) => {
                   if (house === charact.house) {
-                    return <div>{charact.name}</div>;
+                    return (
+                      <div key={ind} className="col">
+                        {charact.name}
+                      </div>
+                    );
                   }
                 })}
               </div>
