@@ -17,6 +17,8 @@ const request = new XMLHttpRequest();
 const baseURL = 'https://www.potterapi.com/v1/';
 const keyURL = '$2a$10$dSooM7l5aj6uLNFOmwf/SObKzKhMgFSrbie2BUTrRmz5hw/jj6Wme';
 
+const houses = ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Hufflepuff'];
+
 const getMembers = (member, getName) => {
   const fullURL = `${baseURL}characters?key=${keyURL}&_id=${member}}`;
   request.open('GET', fullURL, true);
@@ -42,7 +44,7 @@ const sortData = (newData, navOption, getName) => {
         <div className="table" key={index}>
           <div className="row">
             <div className="col">{elem.name}</div>
-            <div className="col">{elem.house || '---'}</div>
+            <div className="col">{elem.role || '---'}</div>
             <div className="col">{elem.species || '---'}</div>
           </div>
         </div>
@@ -52,11 +54,15 @@ const sortData = (newData, navOption, getName) => {
     return (
       <div className="table">
         <div className="row">
-          {[...newData].map((charact, index) => {
+          {[...houses].map((house, index) => {
             return (
               <div className="col" key={index}>
-                <div>{charact.name}</div>
-                {}
+                <div>{house}</div>
+                {[...newData].map((charact, index) => {
+                  if (house === charact.house) {
+                    return <div>{charact.name}</div>;
+                  }
+                })}
               </div>
             );
           })}
