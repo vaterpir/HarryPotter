@@ -4,14 +4,16 @@ import '../../styles/Navbar.css';
 const houses = ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Hufflepuff'];
 const spells = ['Charm', 'Enchantment', 'Hex', 'Spell', 'Curse'];
 
-const createOptions = (pointMenu, getData) => {
-  return pointMenu.map((spel, index) => {
+const createOptions = (pointMenu, getData, option, extra) => {
+  return pointMenu.map((point, index) => {
     return (
       <div className="sortElem" key={index + 'menu'}>
         <button
-          onClick={() => getData('spells', spel.toString().toLowerCase())}
+          onClick={() =>
+            getData(option, extra.toString().toLowerCase(), point.toString())
+          }
         >
-          {spel.toString()}
+          {point.toString()}
         </button>
       </div>
     );
@@ -23,18 +25,26 @@ export const Navbar = ({ getData }) => {
     <div className="Navbar">
       <div className="header">Sort Hogwards:</div>
       <div className="sortElem">
-        <button onClick={() => getData('characters', 'characters')}>
+        <button onClick={() => getData('characters', 'character', 'character')}>
           characters
         </button>
       </div>
       <div className="sortElem">
-        <button onClick={() => getData('houses', 'houses')}>houses</button>
+        <button onClick={() => getData('characters', 'house', 'house')}>
+          houses
+        </button>
       </div>
-      <div className="optionally">{createOptions(houses, getData)}</div>
-      <div className="sortElem">
-        <button onClick={() => getData('spells', 'spells')}>Spells</button>
+      <div className="optionally">
+        {createOptions(houses, getData, 'characters', 'house')}
       </div>
-      <div className="optionally">{createOptions(spells, getData)}</div>
+      {/*       <div className="sortElem">
+        <button onClick={() => getData('spells', 'spells', 'spells')}>
+          Spells
+        </button>
+      </div>
+      <div className="optionally">
+        {createOptions(spells, getData, 'spells', 'spell')}
+      </div> */}
     </div>
   );
 };

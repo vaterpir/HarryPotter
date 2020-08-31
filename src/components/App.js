@@ -11,34 +11,20 @@ const keyURL = '$2a$10$dSooM7l5aj6uLNFOmwf/SObKzKhMgFSrbie2BUTrRmz5hw/jj6Wme';
 
 export const App = () => {
   const [newData, setNewData] = useState('');
+  const [navOption, setNavOption] = useState('');
 
-  const sortNewData = (oldDate, option) => {
-    if (option === 'characters') {
-      const newData = [...oldDate]
-        .map((character) => {
-          return character.name;
-        })
-        .sort()
-        .map((name) => {
-          return oldDate.filter((char) => {
-            return char.name === name;
-          });
-        })
-        .map((newChar) => newChar[0]);
-      setNewData(newData);
-    } else {
-      setNewData(oldDate);
-    }
-  };
-
-  const getData = (mainURL, option) => {
-    request.open('GET', `${baseURL}${mainURL}?key=${keyURL}`, true);
-
+  const getData = (mainURL, option, extra) => {
+    const fullURL = `${baseURL}${mainURL}?key=${keyURL}${
+      option !== extra ? `&${option}=${extra}` : '&'
+    }`;
+    console.log(fullURL);
+    request.open('GET', fullURL, true);
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
         const data = JSON.parse(request.responseText);
         console.log(data);
-        setNewData(sortNewData(data, option));
+        setNavOption(extra);
+        setNewData(data);
       } else {
         console.log('error');
       }
@@ -48,8 +34,13 @@ export const App = () => {
   return (
     <div className="App">
       <Navbar getData={getData} />
-      <Content newData={newData} />
+      <Content newData={newData} navOption={navOption} />
       <Specifications />
     </div>
   );
 };
+/*   const sortNewData = (oldDate, option) => {
+    if (option === 'characters') {
+    } else {
+    }
+  }; */
